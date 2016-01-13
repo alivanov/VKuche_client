@@ -3,9 +3,14 @@
  */
 
 angular.module('VKuche.API').factory('API',
-  function() {
+  function(UsersAPI) {
 
-    var api = {};
+    var api = {
+      Users: {},
+      VK: {}
+    };
+
+    angular.extend(api.Users, UsersAPI);
 
     return api;
   });

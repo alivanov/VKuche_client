@@ -7,7 +7,7 @@ angular.module('VKuche.router', [])
 
     var token = localStorage.getItem('token');
     if (token) {
-      $urlRouterProvider.otherwise('/home');
+      $urlRouterProvider.otherwise('/vk-home');
     } else {
       $urlRouterProvider.otherwise('/login');
     }
@@ -19,9 +19,9 @@ angular.module('VKuche.router', [])
         controller: 'LoginController',
         data: {isPublic: true}
       })
-      .state('home', {
-        url: '/home',
-        templateUrl: 'templates/page-home.html',
-        controller: 'HomeController'
+      .state('vk-home', {
+        url: '/vk-home',
+        templateUrl: 'templates/page-vk-home.html',
+        controller: 'HomeVKController'
       })
   });

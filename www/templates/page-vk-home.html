@@ -1,13 +1,19 @@
 <ion-view>
 
   <ion-header-bar class="bar-stable">
-    <h1 class="title">Home page</h1>
+    <h1 class="title">Wecome {{user.firstname}} {{user.lastname}}!</h1>
   </ion-header-bar>
   <ion-content>
 
     <div class="row">
       <div class="col col-33 col-offset-33">
         <a class="col button button-balanced" ng-click="sync()">Sync with VK</a>
+      </div>
+    </div>
+
+    <div class="row" ng-show="INTERVAL">
+      <div class="col col-33 col-offset-33">
+        <a class="col button button-assertive" ng-click="stop()">STOP</a>
       </div>
     </div>
 

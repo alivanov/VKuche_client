@@ -5,29 +5,31 @@
 'use strict';
 
 angular.module('VKuche.API').factory(
-  'VKAuthAPI',
+  'UsersAPI',
   function($http,
            $rootScope,
            serverURL,
            $q) {
 
     return {
+
       /**
-       * GET current user
+       * get user
+       *
+       * @param  {String}   id                 user id
        *
        * @return {Object}   Promise object
        */
-      login: function(VKAppId) {
+      getUserById: function(id) {
         var stub = {
-          appId: VKAppId,
-          token: {
-            kind: 'VK',
-            val: 'qwerty123456'
-          }
+          id: id,
+          firstname: 'Alex',
+          lastname: 'Ivanov',
+          email: 'ivanov1981@rambler.ru'
         };
 
         var deferred = $q.defer();
-        deferred.resolve(stub);
+        deferred.resolve({user: stub});
 
         return deferred.promise;
       }
