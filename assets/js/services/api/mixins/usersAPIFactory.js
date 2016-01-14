@@ -13,26 +13,7 @@ angular.module('VKuche.API').factory(
 
     return {
 
-      /**
-       * get user
-       *
-       * @param  {String}   id                 user id
-       *
-       * @return {Object}   Promise object
-       */
-      getUserById: function(id) {
-        var stub = {
-          id: id,
-          firstname: 'Alex',
-          lastname: 'Ivanov',
-          email: 'ivanov1981@rambler.ru'
-        };
 
-        var deferred = $q.defer();
-        deferred.resolve({user: stub});
-
-        return deferred.promise;
-      }
     };
   });
 

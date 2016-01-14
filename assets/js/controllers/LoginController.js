@@ -10,40 +10,26 @@ angular.module('VKuche.controllers').controller(
            $q,
            $localstorage,
            $location,
+           $ionicPlatform,
            serverURL,
            APIManager,
            AppId,
            API) {
-    //$scope.loginHref = 'https://oauth.vk.com/authorize?client_id=5223994&scope=audio,email&redirect_uri=' + serverURL + 'auth/vk/callback&display=popup&v=5.44&response_type=token';
 
     $scope.loginVK = function() {
-
       APIManager.setAPI('VK');
       API.VK.login(AppId)
         .then(function(res) {
-          $localstorage.setObject('authToken', res.token);
-          var deferred = $q.defer();
-          deferred.resolve(res.userId);
-          return deferred.promise;
-        }, function(err) {
-          console.error('VK auth ERR', err);
-        })
-        .then(function(userId) {
-          API.Users.getUserById(userId).then(function(res) {
-            $rootScope.user = res.user;
-            $localstorage.setObject('user', res.user);
-          }, function(err) {
-            console.error('user get ERR', err);
-          });
-        })
-        .then(function() {
+          $localstorage.setObject('auth', res);
           $state.go('vk-home');
+        }, function(res) {
+          return console.error('VK auth ERR', res.error);
         })
     };
 
-    var token = $localstorage.getObject('authToken');
-    if (angular.isDefined(token)) {
-      switch (token.kind) {
+    var auth = $localstorage.getObject('auth');
+    if (angular.isDefined(auth.token)) {
+      switch (auth.token.kind) {
         case 'VK':
           $state.go('vk-home');
           break;

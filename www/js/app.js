@@ -8,6 +8,7 @@ angular.module('VKuche.API', []);
 // the 2nd parameter is an array of 'requires'
 angular.module('VKuche', [
   'ionic',
+  'ngCordova',
   'VKuche.router',
   'VKuche.services',
   'VKuche.controllers',
@@ -21,7 +22,7 @@ angular.module('VKuche', [
 //.constant('serverURL', 'http://localhost:3005/')
 .constant('serverURL', 'http://192.168.1.4:3005/')
 //.constant('serverURL', 'https://dancersq.herokuapp.com/')
-.constant('AppId', '1234567890')
+.constant('AppId', '5226411')
 
 .config(function($httpProvider) {
   $httpProvider.interceptors.push('TokenInjector');
@@ -30,15 +31,15 @@ angular.module('VKuche', [
 
 .run(function($ionicPlatform, $localstorage, $rootScope, APIManager) {
   $rootScope.$on('$stateChangeStart', function(ev, toState, toParams) {
-    var token = $localstorage.getObject('authToken');
-    if (!angular.isDefined(token.val) && !(toState.data && toState.data.isPublic)) {
+    var auth = $localstorage.getObject('auth');
+    if (!angular.isDefined(auth.token) && !(toState.data && toState.data.isPublic)) {
       ev.preventDefault();
     }
   });
 
-  var token = $localstorage.getObject('authToken');
-  if (angular.isDefined(token.kind)) {
-    APIManager.setAPI(token.kind)
+  var auth = $localstorage.getObject('auth');
+  if (angular.isDefined(auth.token)) {
+    APIManager.setAPI(auth.token.kind)
   }
 
   $ionicPlatform.ready(function() {

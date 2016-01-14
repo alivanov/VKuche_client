@@ -4,10 +4,17 @@
 
 angular.module('VKuche.controllers').controller(
   'HomeVKController',
-  function($scope, $interval, $localstorage, API) {
+  function($scope, $rootScope, $interval, $localstorage, API) {
 
     var initUser = function() {
-      $scope.user = $localstorage.getObject('user');
+      var userId = $localstorage.getObject('auth').userId;
+      API.VK.getUserById(userId).success(function(res) {
+        $rootScope.user = res.response[0];
+        $scope.user = res.response[0];
+        $localstorage.setObject('user', res.response[0]);
+      }).error(function(err) {
+        console.error('user get ERR', err);
+      });
     };
 
     $scope.sync = function() {

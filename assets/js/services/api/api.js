@@ -6,8 +6,7 @@ angular.module('VKuche.API').factory('API',
   function(UsersAPI) {
 
     var api = {
-      Users: {},
-      VK: {}
+      Users: {}
     };
 
     angular.extend(api.Users, UsersAPI);

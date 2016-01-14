@@ -8,9 +8,9 @@ angular.module('VKuche.API').service('APIManager',
     this.setAPI = function(type) {
       switch (type) {
         case 'VK':
-          angular.extend(API.VK, VKAPI);
+          angular.extend(API, {VK: VKAPI});
           break;
-        default: angular.extend(API.VK, VKAPI);
+        default: angular.extend(API, {VK: VKAPI});
       }
       return API;
     }

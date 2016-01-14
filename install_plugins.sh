@@ -7,7 +7,6 @@ rm -rf plugins/*
 
 ionic plugin add com.ionic.keyboard
 ionic plugin add org.apache.cordova.console
-ionic plugin add https://github.com/apache/cordova-plugin-whitelist.git
 ionic plugin add org.apache.cordova.media
 ionic plugin add org.apache.cordova.splashscreen
 ionic plugin add org.apache.cordova.inappbrowser
