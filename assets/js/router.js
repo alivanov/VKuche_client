@@ -5,8 +5,9 @@
 angular.module('VKuche.router', [])
   .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-    var token = localStorage.getItem('token');
-    if (token) {
+    var token = localStorage.getItem('auth');
+    var user = localStorage.getItem('user');
+    if (token && user) {
       $urlRouterProvider.otherwise('/vk-home');
     } else {
       $urlRouterProvider.otherwise('/login');

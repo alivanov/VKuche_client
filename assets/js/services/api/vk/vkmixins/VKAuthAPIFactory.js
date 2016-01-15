@@ -1,9 +1,17 @@
 /**
- * Created by alivanov on 12/01/16.
+ * Created by alivanov on 15/01/16.
  */
 
-angular.module('VKuche.API').factory('VKAPI',
-  function($http, $rootScope, $q, serverURL, QueryUtils, $cordovaInAppBrowser) {
+'use strict';
+
+angular.module('VKuche.API').factory(
+  'VKAuthAPI',
+  function($http,
+           $rootScope,
+           $q,
+           QueryUtils,
+           $cordovaInAppBrowser) {
+
     return {
 
       /**
@@ -15,7 +23,7 @@ angular.module('VKuche.API').factory('VKAPI',
        */
       login: function(AppId) {
         var deferred = $q.defer();
-        var loginHref = 'https://oauth.vk.com/authorize?client_id=' +
+       var loginHref = 'https://oauth.vk.com/authorize?client_id=' +
           AppId +
           '&scope=audio,email&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.44&response_type=token';
 
@@ -38,7 +46,6 @@ angular.module('VKuche.API').factory('VKAPI',
                 };
                 $cordovaInAppBrowser.close();
                 deferred.resolve(res);
-
               }
 
               //auth error
@@ -48,41 +55,13 @@ angular.module('VKuche.API').factory('VKAPI',
                 $cordovaInAppBrowser.close();
                 deferred.reject({error: query.error_description});
               }
-
             })
           }, function() {
             deferred.reject({error: 'Can not display auth dialog!'});
             $cordovaInAppBrowser.close();
           });
         return deferred.promise;
-      },
-
-      /**
-       * get user
-       *
-       * @param  {String}   id                 user id
-       *
-       * @return {Object}   Promise object
-       */
-      getUserById: function(id) {
-        var options = {
-          method: 'GET',
-          url: 'https://api.vk.com/method/users.get',
-          params: {
-            name_case: 'Nom',
-            user_ids: id
-          }
-        };
-        return $http(options);
-      },
-
-      test: function() {
-        var options = {
-          method: 'get',
-          url: serverURL + 'api/vk/test'
-        };
-
-        return $http(options);
       }
     };
+
   });

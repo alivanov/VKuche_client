@@ -3,13 +3,13 @@
  */
 
 angular.module('VKuche.API').factory('API',
-  function(UsersAPI) {
+  function(SyncAPI) {
 
     var api = {
-      Users: {}
+      Sync: {}
     };
 
-    angular.extend(api.Users, UsersAPI);
+    angular.extend(api.Sync, SyncAPI);
 
     return api;
   });

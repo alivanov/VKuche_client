@@ -7,18 +7,11 @@ angular.module('VKuche.controllers').controller(
   function($scope, $rootScope, $interval, $localstorage, API) {
 
     var initUser = function() {
-      var userId = $localstorage.getObject('auth').userId;
-      API.VK.getUserById(userId).success(function(res) {
-        $rootScope.user = res.response[0];
-        $scope.user = res.response[0];
-        $localstorage.setObject('user', res.response[0]);
-      }).error(function(err) {
-        console.error('user get ERR', err);
-      });
+      $scope.user = $localstorage.getObject('user');
     };
 
     $scope.sync = function() {
-        API.VK.test().success(function(res) {
+        API.AudioTracks.test().success(function(res) {
           console.log('OK', res);
 
           if (angular.isDefined($scope.INTERVAL)) {

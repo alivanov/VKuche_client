@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('VKuche.API').factory(
-  'UsersAPI',
+  'SyncAPI',
   function($http,
            $rootScope,
            serverURL,

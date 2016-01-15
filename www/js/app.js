@@ -32,7 +32,8 @@ angular.module('VKuche', [
 .run(function($ionicPlatform, $localstorage, $rootScope, APIManager) {
   $rootScope.$on('$stateChangeStart', function(ev, toState, toParams) {
     var auth = $localstorage.getObject('auth');
-    if (!angular.isDefined(auth.token) && !(toState.data && toState.data.isPublic)) {
+    var user = $localstorage.getObject('user');
+    if (!(angular.isDefined(auth.token) && angular.isDefined(user)) && !(toState.data && toState.data.isPublic)) {
       ev.preventDefault();
     }
   });
