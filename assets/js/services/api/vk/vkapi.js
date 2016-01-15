@@ -7,12 +7,12 @@ angular.module('VKuche.API').factory('VKAPI',
 
     var api = {
       Auth: {},
-      AudionTracks: {},
+      AudioTracks: {},
       Users: {}
     };
 
     angular.extend(api.Auth, VKAuthAPI);
-    angular.extend(api.AudionTracks, VKAudioTracksAPI);
+    angular.extend(api.AudioTracks, VKAudioTracksAPI);
     angular.extend(api.Users, VKUsersAPI);
 
     return api;

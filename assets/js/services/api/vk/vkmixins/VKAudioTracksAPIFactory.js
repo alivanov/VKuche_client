@@ -10,10 +10,20 @@ angular.module('VKuche.API').factory(
 
     return {
 
-      test: function() {
+      /**
+       * get user music
+       *
+       * @param  {String}   id              VK user id
+       *
+       * @return {Object}   Promise object
+       */
+      fetch: function(id) {
         var options = {
           method: 'get',
-          url: serverURL + 'api/vk/test'
+          url: 'https://api.vk.com/method/audio.get',
+          params: {
+            owner_id: id
+          }
         };
 
         return $http(options);

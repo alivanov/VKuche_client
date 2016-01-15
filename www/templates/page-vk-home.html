@@ -17,6 +17,15 @@
       </div>
     </div>
 
+    <div ng-show="audioTracks.length > 0">
+      <p>You have <strong>{{audioTracks.length}}</strong> audio tracks</p>
+      <ul class="list">
+        <li class="item" ng-repeat="item in audioTracks | orderBy: 'artist'">
+          {{item.artist}} - {{item.title}}
+        </li>
+      </ul>
+    </div>
+
   </ion-content>
 
 </ion-view>
