@@ -25,7 +25,7 @@ angular.module('VKuche.API').factory(
         var deferred = $q.defer();
        var loginHref = 'https://oauth.vk.com/authorize?client_id=' +
           AppId +
-          '&scope=audio,email&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.44&response_type=token';
+          '&scope=audio,email,offline&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.44&response_type=token';
 
         $cordovaInAppBrowser.open(loginHref, '_blank', {location: 'no', clearcache: 'yes', toolbar: 'no'})
           .then(function() {
