@@ -9,10 +9,10 @@ ionic plugin add com.ionic.keyboard
 ionic plugin add org.apache.cordova.console
 ionic plugin add org.apache.cordova.media
 ionic plugin add org.apache.cordova.splashscreen
-ionic plugin add org.apache.cordova.inappbrowser
+ionic plugin add cordova-plugin-inappbrowser@1.1.1
 ionic plugin add org.apache.cordova.device
 ionic plugin add org.apache.cordova.file
-ionic plugin add cordova-plugin-whitelist
+ionic plugin add cordova-plugin-whitelist@1.0.0
 
 ionic platform add ios
 ionic platform add android

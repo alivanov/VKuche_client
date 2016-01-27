@@ -6,11 +6,11 @@ angular.module('VKuche.services').factory('TokenInjector', function($localstorag
   return {
     request: function(config) {
       var auth = $localstorage.getObject('auth');
-      if (angular.isDefined(auth.token)) {
-        config.headers['auth-token'] = auth.token.val;
+      if (angular.isDefined(auth.access_token)) {
+        config.headers['auth-token'] = auth.access_token;
         if (config.url.indexOf('api.vk.com') != -1) {
           config.params = config.params || {};
-          angular.extend(config.params, {access_token: auth.token.val});
+          angular.extend(config.params, {access_token: auth.access_token});
         }
       }
       return config;

@@ -18,15 +18,8 @@ angular.module('VKuche.API').factory(
        * @return {Object}   Promise object
        */
       getUserById: function(id) {
-        var options = {
-          method: 'GET',
-          url: 'https://api.vk.com/method/users.get',
-          params: {
-            name_case: 'Nom',
-            user_ids: id
-          }
-        };
-        return $http(options);
+        var url = 'https://api.vk.com/method/users.get?name_case=Nom&user_ids=' + id + '&callback=JSON_CALLBACK';
+        return $http.jsonp(url);
       }
 
     };

@@ -23,7 +23,7 @@ angular.module('VKuche.API').factory(
        */
       login: function(AppId) {
         var deferred = $q.defer();
-       var loginHref = 'https://oauth.vk.com/authorize?client_id=' +
+        var loginHref = 'https://oauth.vk.com/authorize?client_id=' +
           AppId +
           '&scope=audio,email,offline&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.44&response_type=token';
 
@@ -36,13 +36,11 @@ angular.module('VKuche.API').factory(
               if (idx != -1) {
                 var query = QueryUtils.getQueryParameters(event.url.substring(idx + 1, event.url.length));
                 var res = {
-                  appId: AppId,
-                  userId: query.user_id,
+                  user_id: query.user_id,
                   email: query.email,
-                  token: {
-                    kind: 'VK',
-                    val: query.access_token
-                  }
+                  access_token: query.access_token,
+                  token_kind: 'VK',
+                  expires_in: query.expires_in
                 };
                 $cordovaInAppBrowser.close();
                 deferred.resolve(res);
@@ -56,7 +54,8 @@ angular.module('VKuche.API').factory(
                 deferred.reject({error: query.error_description});
               }
             })
-          }, function() {
+          })
+          .catch(function() {
             deferred.reject({error: 'Can not display auth dialog!'});
             $cordovaInAppBrowser.close();
           });
