@@ -13,11 +13,6 @@ angular.module('VKuche.controllers').controller(
       var id = $localstorage.getObject('auth').user_id;
       API.Users.getUserById(id)
         .success(function(res) {
-
-          console.log(res);
-
-
-
           if (res.response) {
             $scope.user = res.response[0];
           } else {
@@ -37,16 +32,11 @@ angular.module('VKuche.controllers').controller(
             title: 'Can not get user data!'
           });
         });
-
     };
 
-    $scope.sync = function() {
+    $scope.sync = function() {};
 
-    };
-
-    $scope.stop = function() {
-
-    };
+    $scope.stop = function() {};
 
     initUser();
 
